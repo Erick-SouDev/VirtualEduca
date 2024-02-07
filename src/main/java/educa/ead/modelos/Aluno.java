@@ -1,5 +1,6 @@
 package educa.ead.modelos;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -7,13 +8,24 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue(value = "aluno")
 public class Aluno extends Usuario {
 	
-	private String  matricula;
-	
-	
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
+	@Column(name = "matricula" , length = 300)
+	private String matricula;
+
 	public String getMatricula() {
 		return matricula;
 	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [matricula=" + matricula + "]";
+	}
+	
+	
+	
+	
+	
 }

@@ -3,24 +3,37 @@ package educa.ead.modelos;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+
+import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.SequenceGenerator;
 
-@Entity(name = "usuario")
+@Entity()
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Usuario")
+@SequenceGenerator(name = "seq_id_user", sequenceName = "seq_id_user", initialValue = 100, allocationSize = 1)
+
 public class Usuario implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "seq_id_user")
 	private Long id;
+	@Column(length = 300 , name = "nome")
 	private String nome;
+	
+	@Column(length = 80 , name = "email")
 	private String email;
+	@Column(length = 80 , name = "senha")
 	private String senha;
+	@Column(name = "foto" , columnDefinition = "text")
 	private String foto;
 	public Long getId() {
 		return id;
