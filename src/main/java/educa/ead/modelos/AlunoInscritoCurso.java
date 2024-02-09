@@ -17,6 +17,27 @@ public class AlunoInscritoCurso {
 	@Embedded
 	private AlunoCurso alunoCurso;
 
+	public Date getQuandoFoiMatriculado() {
+		return quandoFoiMatriculado;
+	}
+
+	public void setQuandoFoiMatriculado(Date quandoFoiMatriculado) {
+		this.quandoFoiMatriculado = quandoFoiMatriculado;
+	}
+
+	public AlunoCurso getAlunoCurso() {
+		return alunoCurso;
+	}
+
+	public void setAlunoCurso(AlunoCurso alunoCurso) {
+		this.alunoCurso = alunoCurso;
+	}
+
+	@Override
+	public String toString() {
+		return "AlunoInscritoCurso [quandoFoiMatriculado=" + quandoFoiMatriculado + ", alunoCurso=" + alunoCurso + "]";
+	}
+
 
 	
 	

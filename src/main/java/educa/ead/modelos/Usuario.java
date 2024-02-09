@@ -46,6 +46,10 @@ public class Usuario implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private TyperUser typerUser;
+	
+	
+	
+	
 
 	public TyperUser getTyperUser() {
 		return typerUser;
