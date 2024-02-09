@@ -6,9 +6,9 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 
 import educa.ead.enumerator.TyperUser;
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,20 +16,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
-@Entity()
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Usuario")
-@SequenceGenerator(name = "seq_id_user", sequenceName = "seq_id_user", initialValue = 1000, allocationSize = 1)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @Table(name = "usuario" , uniqueConstraints = @UniqueConstraint(columnNames = {"email" , "senha"}))
-public class Usuario implements Serializable {
+public abstract class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_user")
+	@GeneratedValue(strategy = GenerationType.AUTO )
 	private Long id;
 	@Column(length = 300, name = "nome")
 	private String nome;

@@ -11,7 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-@Entity()
+@Entity
 @DiscriminatorValue(value = "aluno")
 public class Aluno extends Usuario {
 	
