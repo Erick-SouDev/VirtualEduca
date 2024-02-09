@@ -2,6 +2,7 @@ package educa.ead.modelos;
 
 import java.util.Objects;
 
+import jakarta.persistence.Id;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +19,7 @@ import jakarta.persistence.SequenceGenerator;
 
 public class Aula {
 
+	@Id
 	@GeneratedValue(generator = "seq_id_aula", strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_aula")
 	private Long id;
@@ -36,7 +38,6 @@ public class Aula {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_curso")
 	@org.hibernate.annotations.ForeignKey(name = "curso_id_fk")
 	private Curso curso;
 

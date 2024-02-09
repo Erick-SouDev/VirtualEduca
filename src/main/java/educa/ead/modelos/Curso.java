@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.ForeignKey;
+import jakarta.persistence.Id;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,19 +14,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "seq_id_curso", sequenceName = "seq_id_curso", initialValue = 100, allocationSize = 1)
-
 public class Curso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Id
 	@GeneratedValue(generator = "seq_id_curso", strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_Curso")
 	private Long id;
 
 	@Column(length = 200, name = "nome_curso", nullable = false)
@@ -46,15 +45,14 @@ public class Curso implements Serializable {
 	@Column(name = "curso_liberado")
 	private Boolean cursoLiberado;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_instrutor")
-	@ForeignKey(name = "id_instrutor_fk")
+	@ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY )
+	@ForeignKey(name = "instrutor_id")
 	private Instrutor instrutorCurso;
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH, mappedBy = "Curso", fetch = FetchType.LAZY)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH, mappedBy = "curso", fetch = FetchType.LAZY)
 	private List<Aula> aulasCurso = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "Curso" , orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER , orphanRemoval = true)
 	private List<Aluno> alunos = new ArrayList<>();
 
 	public void setInstrutorCurso(Instrutor instrutorCurso) {

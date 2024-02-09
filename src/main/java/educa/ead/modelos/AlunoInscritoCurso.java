@@ -2,64 +2,39 @@ package educa.ead.modelos;
 
 import java.util.Date;
 
-import org.hibernate.annotations.ForeignKey;
-
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "tbl_aluno_inscrito_curso", uniqueConstraints = @UniqueConstraint(columnNames = { "aluno", "curso" }))
+
 public class AlunoInscritoCurso {
 
-	@Temporal(TemporalType.DATE )
+	@Temporal(TemporalType.DATE)
 	private Date quandoFoiMatriculado;
-	
 
-	@JoinColumn(name = "id_aluno")
-	@ForeignKey(name = "id_aluno_fk")
-	private Aluno aluno;
-	
-	
-	@JoinColumn(name = "id_curso")
-	@ForeignKey(name = "id_curso_fk")
-	private Curso curso;
-
+	@EmbeddedId
+	private CursoAluno cursoAluno;
 
 	public Date getQuandoFoiMatriculado() {
 		return quandoFoiMatriculado;
 	}
 
-
 	public void setQuandoFoiMatriculado(Date quandoFoiMatriculado) {
 		this.quandoFoiMatriculado = quandoFoiMatriculado;
 	}
 
+	public CursoAluno getCursoAluno() {
+		return cursoAluno;
+	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public void setCursoAluno(CursoAluno cursoAluno) {
+		this.cursoAluno = cursoAluno;
 	}
 
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-
-
-	
-	
-	
-	
-	
-	
 }

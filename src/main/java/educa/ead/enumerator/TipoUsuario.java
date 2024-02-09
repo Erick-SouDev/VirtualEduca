@@ -1,6 +1,6 @@
 package educa.ead.enumerator;
 
-public enum TyperUser {
+public enum TipoUsuario {
 
 	ALUNO,
 	INSTRUTOR
