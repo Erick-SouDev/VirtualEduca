@@ -4,11 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
-@Entity(name = "aluno")
+@Entity()
 @DiscriminatorValue(value = "aluno")
 public class Aluno extends Usuario {
 	
-	@Column(name = "matricula" , length = 300)
+	@Column(name = "matricula_aluno" , length = 300)
 	private String matricula;
 
 	public String getMatricula() {
