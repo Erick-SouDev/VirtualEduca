@@ -14,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
-@Entity(name = "tb_aula")
+@Entity
 @SequenceGenerator(name = "seq_id_aula", sequenceName = "seq_id_aula", initialValue = 1, allocationSize = 1)
 
 public class Aula {
@@ -37,9 +37,19 @@ public class Aula {
 	private Long duracao;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY)
-	@org.hibernate.annotations.ForeignKey(name = "curso_id_fk")
+	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY )
 	private Curso curso;
+	
+	
+	
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 
 	public Long getId() {
 		return id;

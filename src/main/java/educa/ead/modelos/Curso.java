@@ -1,12 +1,8 @@
 package educa.ead.modelos;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import org.hibernate.annotations.ForeignKey;
-import jakarta.persistence.Id;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,7 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
@@ -45,23 +41,10 @@ public class Curso implements Serializable {
 	@Column(name = "curso_liberado")
 	private Boolean cursoLiberado;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY )
-	@ForeignKey(name = "instrutor_id")
-	private Instrutor instrutorCurso;
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH, mappedBy = "curso", fetch = FetchType.LAZY)
-	private List<Aula> aulasCurso = new ArrayList<>();
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH,  fetch = FetchType.LAZY , mappedBy = "curso")
+	private List<Aula> aulas ;
 
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER , orphanRemoval = true)
-	private List<Aluno> alunos = new ArrayList<>();
-
-	public void setInstrutorCurso(Instrutor instrutorCurso) {
-		this.instrutorCurso = instrutorCurso;
-	}
-
-	public Instrutor getInstrutorCurso() {
-		return instrutorCurso;
-	}
 
 	public Long getId() {
 		return id;
@@ -69,6 +52,30 @@ public class Curso implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Curso other = (Curso) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
+				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas + ", alunos="
+				 + "]";
 	}
 
 	public String getNome() {
@@ -119,36 +126,18 @@ public class Curso implements Serializable {
 		this.cursoLiberado = cursoLiberado;
 	}
 
-	public List<Aula> getAulasCurso() {
-		return aulasCurso;
+	public List<Aula> getAulas() {
+		return aulas;
 	}
 
-	public void setAulasCurso(List<Aula> aulasCurso) {
-		this.aulasCurso = aulasCurso;
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 
-	@Override
-	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
-				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulasCurso=" + aulasCurso
-				+ "]";
-	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+	
+	
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Curso other = (Curso) obj;
-		return Objects.equals(id, other.id);
-	}
+	
 
 }
