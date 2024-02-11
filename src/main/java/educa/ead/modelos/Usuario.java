@@ -4,21 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.SequenceGenerator;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, columnDefinition = "tipo_usuario")
-@SequenceGenerator(name = "seq_id", sequenceName = "seq_id", initialValue = 100, allocationSize = 1)
-
+@MappedSuperclass
+@SequenceGenerator(allocationSize = 1 , initialValue = 1000 , name = "seq_id" , sequenceName = "seq_id")
 public abstract class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 3474763985167895841L;

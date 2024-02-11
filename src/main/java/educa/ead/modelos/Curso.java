@@ -1,6 +1,7 @@
 package educa.ead.modelos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+
 
 @Entity
 @SequenceGenerator(name = "seq_id_curso", sequenceName = "seq_id_curso", initialValue = 100, allocationSize = 1)
@@ -43,7 +45,7 @@ public class Curso implements Serializable {
 
 
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH,  fetch = FetchType.LAZY , mappedBy = "curso")
-	private List<Aula> aulas ;
+	private List<Aula> aulas =new ArrayList<>() ;
 
 
 	public Long getId() {
