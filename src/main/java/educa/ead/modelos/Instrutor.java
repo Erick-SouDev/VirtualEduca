@@ -1,8 +1,14 @@
 package educa.ead.modelos;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("instrutor")
@@ -16,6 +22,9 @@ public class Instrutor  extends Usuario{
 
 	@Column(name = "sobre", length = 300)
 	private String sobre;
+	
+	@OneToMany(mappedBy = "instrutor" , orphanRemoval = true , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+	private Set<Curso> cursos = new HashSet<>();
 
 	public String getFormacao() {
 		return formacao;
@@ -36,6 +45,14 @@ public class Instrutor  extends Usuario{
 	@Override
 	public String toString() {
 		return "Instrutor [formacao=" + formacao + ", sobre=" + sobre + "]";
+	}
+
+	public Set<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Set<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 	

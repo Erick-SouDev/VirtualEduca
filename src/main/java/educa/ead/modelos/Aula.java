@@ -5,6 +5,7 @@ import java.util.Objects;
 import jakarta.persistence.Id;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -38,6 +39,7 @@ public class Aula {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY )
+	@JoinColumn(name = "curso_id" , unique = true , foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT  , name="curso_id_fk")  )
 	private Curso curso;
 	
 	
