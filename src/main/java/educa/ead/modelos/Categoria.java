@@ -22,6 +22,11 @@ import jakarta.persistence.UniqueConstraint;
 @SequenceGenerator(initialValue = 100 , allocationSize = 1 , name = "categoria_seq" , sequenceName = "categoria_seq")
 public class Categoria implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator ="categoria_seq"  , strategy = GenerationType.SEQUENCE)
 	private Long id;

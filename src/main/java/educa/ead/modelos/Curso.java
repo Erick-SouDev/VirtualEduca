@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -59,6 +60,9 @@ public class Curso implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria_id", unique = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "categoria_id_fk"))
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "curso" , fetch = FetchType.LAZY , cascade = CascadeType.ALL , orphanRemoval = true)
+    private Set<CertificadoCurso> certificadoCurso = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -124,6 +128,14 @@ public class Curso implements Serializable {
 		this.aulas = aulas;
 	}
 
+	public Set<AlunoCurso> getAlunoCursos() {
+		return alunoCursos;
+	}
+
+	public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
+		this.alunoCursos = alunoCursos;
+	}
+
 	public Instrutor getInstrutor() {
 		return instrutor;
 	}
@@ -140,17 +152,25 @@ public class Curso implements Serializable {
 		this.categoria = categoria;
 	}
 
+	public Set<CertificadoCurso> getCertificadoCurso() {
+		return certificadoCurso;
+	}
+
+	public void setCertificadoCurso(Set<CertificadoCurso> certificadoCurso) {
+		this.certificadoCurso = certificadoCurso;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
+				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas
+				+ ", alunoCursos=" + alunoCursos + ", instrutor=" + instrutor + ", categoria=" + categoria
+				+ ", certificadoCurso=" + certificadoCurso + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
-	}
-
-	public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
-		this.alunoCursos = alunoCursos;
-	}
-
-	public Set<AlunoCurso> getAlunoCursos() {
-		return alunoCursos;
 	}
 
 	@Override
@@ -165,27 +185,15 @@ public class Curso implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
-				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas
-				+ ", instrutor=" + instrutor + ", categoria=" + categoria + "]";
-	}
-
-	public Curso(String nome, String descricao, String sobre, Boolean cursoLiberado, Set<Aula> aulas,
-			Instrutor instrutor, Categoria categoria) {
-		super();
-		this.nome = nome;
-		this.descricao = descricao;
-		this.sobre = sobre;
-		this.cursoLiberado = cursoLiberado;
-		this.aulas = aulas;
-		this.instrutor = instrutor;
-		this.categoria = categoria;
-	}
-
-	public Curso() {
-		super();
-	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

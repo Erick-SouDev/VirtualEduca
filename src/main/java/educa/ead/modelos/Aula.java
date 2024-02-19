@@ -31,8 +31,9 @@ public class Aula {
 	@Column(name = "descricao_aula")
 	private String descricao;
 	
-	@Column(name = "video_aula")
-	private String videoAula;
+	@Column(name = "url_video")
+	private String url_video;
+	
 
 	@Column(name = "duracao_aula")
 	private Long duracao;
@@ -41,68 +42,72 @@ public class Aula {
 	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY )
 	@JoinColumn(name = "curso_id" , unique = true , foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT  , name="curso_id_fk")  )
 	private Curso curso;
-	
-	
-	
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getNome() {
 		return nome;
 	}
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	public String getDescricao() {
 		return descricao;
 	}
 
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-	public String getVideoAula() {
-		return videoAula;
+
+	public String getUrl_video() {
+		return url_video;
 	}
 
-	public void setVideoAula(String videoAula) {
-		this.videoAula = videoAula;
+
+	public void setUrl_video(String url_video) {
+		this.url_video = url_video;
 	}
+
 
 	public Long getDuracao() {
 		return duracao;
 	}
 
+
 	public void setDuracao(Long duracao) {
 		this.duracao = duracao;
 	}
 
-	@Override
-	public String toString() {
-		return "Aula [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", videoAula=" + videoAula
-				+ ", duracao=" + duracao + "]";
+
+	public Curso getCurso() {
+		return curso;
 	}
+
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -115,5 +120,16 @@ public class Aula {
 		Aula other = (Aula) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Aula [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", url_video=" + url_video
+				+ ", duracao=" + duracao + ", curso=" + curso + "]";
+	}
+
+
+	
+
 
 }
