@@ -12,6 +12,7 @@ import jakarta.persistence.SequenceGenerator;
 
 @MappedSuperclass
 @SequenceGenerator(allocationSize = 1 , initialValue = 1000 , name = "seq_id" , sequenceName = "seq_id")
+
 public abstract class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 3474763985167895841L;

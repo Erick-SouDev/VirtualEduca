@@ -1,7 +1,7 @@
 package educa.ead.modelos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,7 +24,7 @@ public class Instrutor  extends Usuario{
 	private String sobre;
 	
 	@OneToMany(mappedBy = "instrutor" , orphanRemoval = true , cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-	private Set<Curso> cursos = new HashSet<>();
+	private List<Curso> cursos = new ArrayList<>();
 
 	public String getFormacao() {
 		return formacao;
@@ -42,17 +42,17 @@ public class Instrutor  extends Usuario{
 		this.sobre = sobre;
 	}
 
-	@Override
-	public String toString() {
-		return "Instrutor [formacao=" + formacao + ", sobre=" + sobre + "]";
-	}
-
-	public Set<Curso> getCursos() {
+	public List<Curso> getCursos() {
 		return cursos;
 	}
 
-	public void setCursos(Set<Curso> cursos) {
+	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
+	}
+
+	@Override
+	public String toString() {
+		return "Instrutor [formacao=" + formacao + ", sobre=" + sobre + ", cursos=" + cursos + "]";
 	}
 
 	

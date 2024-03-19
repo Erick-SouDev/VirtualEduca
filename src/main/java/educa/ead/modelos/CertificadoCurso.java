@@ -41,7 +41,7 @@ public class CertificadoCurso  implements Serializable{
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL , optional = false , fetch = FetchType.LAZY )
-	@JoinColumn(unique = true , name = "id_curso" , foreignKey = @ForeignKey(foreignKeyDefinition = "id_curso_fk" , value = ConstraintMode.CONSTRAINT))
+	@JoinColumn(unique = true , name = "id_curso" )
 	private Curso curso;
 
 

@@ -19,13 +19,10 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "aluno_curso" , uniqueConstraints = @UniqueConstraint(columnNames = {"id_aluno" , "id_curso" } ))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id_aluno" , "id_curso"}))
 public class AlunoCurso implements Serializable {
 
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "data_matricula")
@@ -40,7 +37,7 @@ public class AlunoCurso implements Serializable {
 	
 	@EmbeddedId
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	@JoinColumn(foreignKey = @ForeignKey(name = "id_cursofk" , value = ConstraintMode.CONSTRAINT) , name = "id_curso")
+	@JoinColumn(foreignKey = @ForeignKey(name = "id_curso_fk" , value = ConstraintMode.CONSTRAINT) , name = "id_curso")
 	private Curso curso;
 	
 	@Override

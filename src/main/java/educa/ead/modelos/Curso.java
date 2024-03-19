@@ -1,7 +1,10 @@
 package educa.ead.modelos;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +20,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -39,7 +41,7 @@ public class Curso implements Serializable {
 	private String sobre;
 
 	@Column(name = "duracao_curso", nullable = false)
-	private Long duracao;
+	private Duration duracao;
 
 	@Column(columnDefinition = "text", name = "banner_curso")
 	private String banner;
@@ -62,7 +64,7 @@ public class Curso implements Serializable {
 	private Categoria categoria;
 	
 	@OneToMany(mappedBy = "curso" , fetch = FetchType.LAZY , cascade = CascadeType.ALL , orphanRemoval = true)
-    private Set<CertificadoCurso> certificadoCurso = new HashSet<>();
+    private List<CertificadoCurso> certificadoCurso = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -96,11 +98,11 @@ public class Curso implements Serializable {
 		this.sobre = sobre;
 	}
 
-	public Long getDuracao() {
+	public Duration getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(Long duracao) {
+	public void setDuracao(Duration duracao) {
 		this.duracao = duracao;
 	}
 
@@ -152,20 +154,12 @@ public class Curso implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public Set<CertificadoCurso> getCertificadoCurso() {
+	public List<CertificadoCurso> getCertificadoCurso() {
 		return certificadoCurso;
 	}
 
-	public void setCertificadoCurso(Set<CertificadoCurso> certificadoCurso) {
+	public void setCertificadoCurso(List<CertificadoCurso> certificadoCurso) {
 		this.certificadoCurso = certificadoCurso;
-	}
-
-	@Override
-	public String toString() {
-		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
-				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas
-				+ ", alunoCursos=" + alunoCursos + ", instrutor=" + instrutor + ", categoria=" + categoria
-				+ ", certificadoCurso=" + certificadoCurso + "]";
 	}
 
 	@Override
@@ -185,14 +179,18 @@ public class Curso implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
+				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas
+				+ ", alunoCursos=" + alunoCursos + ", instrutor=" + instrutor + ", categoria=" + categoria
+				+ ", certificadoCurso=" + certificadoCurso + "]";
+	}
+
 	
 	
 	
-	
-	
-	
-	
-	
+
 	
 	
 	

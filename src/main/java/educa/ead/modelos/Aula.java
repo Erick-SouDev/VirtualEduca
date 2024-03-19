@@ -1,5 +1,7 @@
 package educa.ead.modelos;
 
+import java.io.Serializable;
+import java.time.Duration;
 import java.util.Objects;
 
 import jakarta.persistence.Id;
@@ -14,18 +16,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @SequenceGenerator(name = "seq_id_aula", sequenceName = "seq_id_aula", initialValue = 1, allocationSize = 1)
+public class Aula implements Serializable {
 
-public class Aula {
+	@Override
+	public int hashCode() {
+		return Objects.hash(curso, id);
+	}
+
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(generator = "seq_id_aula", strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_aula")
 	private Long id;
 
-	@Column(name = "nome_aula")
+	
+	@Column(name = "nome_aula" , unique = true )
 	private String nome;
 
 	@Column(name = "descricao_aula")
@@ -36,12 +50,13 @@ public class Aula {
 	
 
 	@Column(name = "duracao_aula")
-	private Long duracao;
+	private Duration duracao;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY )
 	@JoinColumn(name = "curso_id" , unique = true , foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT  , name="curso_id_fk")  )
 	private Curso curso;
+
 
 	public Long getId() {
 		return id;
@@ -83,12 +98,12 @@ public class Aula {
 	}
 
 
-	public Long getDuracao() {
+	public Duration getDuracao() {
 		return duracao;
 	}
 
 
-	public void setDuracao(Long duracao) {
+	public void setDuracao(Duration duracao) {
 		this.duracao = duracao;
 	}
 
@@ -103,11 +118,7 @@ public class Aula {
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -118,7 +129,7 @@ public class Aula {
 		if (getClass() != obj.getClass())
 			return false;
 		Aula other = (Aula) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(curso, other.curso) && Objects.equals(id, other.id);
 	}
 
 
@@ -127,9 +138,7 @@ public class Aula {
 		return "Aula [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", url_video=" + url_video
 				+ ", duracao=" + duracao + ", curso=" + curso + "]";
 	}
-
-
 	
-
+	
 
 }

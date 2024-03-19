@@ -3,6 +3,8 @@ package educa.ead.modelos;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.catalina.User;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;

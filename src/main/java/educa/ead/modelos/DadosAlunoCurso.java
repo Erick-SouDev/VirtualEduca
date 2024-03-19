@@ -14,9 +14,6 @@ public class DadosAlunoCurso  {
 	public String informacao;
 	
 	
-
-	
-
 	
 	
 	public String getNomeAluno() {
