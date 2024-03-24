@@ -89,7 +89,7 @@ Este é um sistema de Ensino a Distância (EAD) desenvolvido com Spring Boot, Po
 
 Antes de iniciar, certifique-se de ter o seguinte instalado em sua máquina:
 
-- Java Development Kit (JDK) 8 ou superior
+- Java Development Kit (JDK) 17 ou superior
 - Maven
 - PostgreSQL
 
