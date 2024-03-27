@@ -2,9 +2,7 @@ package educa.ead.modelos;
 
 import java.io.Serializable;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -31,40 +29,50 @@ public class Curso implements Serializable {
 	@GeneratedValue(generator = "seq_id_curso", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	
 	@Column(length = 200, name = "nome_curso", nullable = false)
 	private String nome;
+	
 
 	@Column(length = 200, name = "descricao_curso", nullable = false)
 	private String descricao;
+	
 
 	@Column(length = 400, name = "sobre_curso", nullable = false)
 	private String sobre;
+	
 
 	@Column(name = "duracao_curso", nullable = false)
 	private Duration duracao;
+	
 
 	@Column(columnDefinition = "text", name = "banner_curso")
 	private String banner;
 
 	@Column(name = "curso_liberado")
 	private Boolean cursoLiberado;
+	
 
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "curso")
 	private Set<Aula> aulas = new HashSet<>();
+	
+	
 
-	@OneToMany(mappedBy = "curso", orphanRemoval = true, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	private Set<AlunoCurso> alunoCursos = new HashSet<>();
+	
+	
+	@OneToMany(orphanRemoval = true , cascade = CascadeType.REMOVE , fetch = FetchType.LAZY , mappedBy = "curso")
+	private Set<CertificadoCurso> certificado= new HashSet<>();
+ 
+	
+	
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "instrutor_id", unique = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "instrutor_id_fk"))
-	private Instrutor instrutor;
+	@JoinColumn(name = "professor_id", unique = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "professor_id_fk"))
+	private Professor professor;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria_id", unique = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "categoria_id_fk"))
 	private Categoria categoria;
-	
-	@OneToMany(mappedBy = "curso" , fetch = FetchType.LAZY , cascade = CascadeType.ALL , orphanRemoval = true)
-    private List<CertificadoCurso> certificadoCurso = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -130,20 +138,20 @@ public class Curso implements Serializable {
 		this.aulas = aulas;
 	}
 
-	public Set<AlunoCurso> getAlunoCursos() {
-		return alunoCursos;
+	public Set<CertificadoCurso> getCertificado() {
+		return certificado;
 	}
 
-	public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
-		this.alunoCursos = alunoCursos;
+	public void setCertificado(Set<CertificadoCurso> certificado) {
+		this.certificado = certificado;
 	}
 
-	public Instrutor getInstrutor() {
-		return instrutor;
+	public Professor getProfessor() {
+		return professor;
 	}
 
-	public void setInstrutor(Instrutor instrutor) {
-		this.instrutor = instrutor;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public Categoria getCategoria() {
@@ -152,14 +160,6 @@ public class Curso implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public List<CertificadoCurso> getCertificadoCurso() {
-		return certificadoCurso;
-	}
-
-	public void setCertificadoCurso(List<CertificadoCurso> certificadoCurso) {
-		this.certificadoCurso = certificadoCurso;
 	}
 
 	@Override
@@ -183,11 +183,12 @@ public class Curso implements Serializable {
 	public String toString() {
 		return "Curso [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", sobre=" + sobre + ", duracao="
 				+ duracao + ", banner=" + banner + ", cursoLiberado=" + cursoLiberado + ", aulas=" + aulas
-				+ ", alunoCursos=" + alunoCursos + ", instrutor=" + instrutor + ", categoria=" + categoria
-				+ ", certificadoCurso=" + certificadoCurso + "]";
+				+ ", certificado=" + certificado + ", professor=" + professor + ", categoria=" + categoria + "]";
 	}
 
+
 	
+
 	
 	
 

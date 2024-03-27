@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragmentos/head :: head('Aluno')}">
+</head>
+
+<body>
+
+	<header th:insert="~{fragmentos/header :: header}"></header>
+	<div class="half">
+		<div class="contents order-2 order-md-1">
+
+			<div class="container">
+
+				<div class="row align-items-center justify-content-center">
+					<div class="col-md-8">
+						<div class="form-block">
+
+							<div class="text-center mb-5">
+								<img src="../static/images/online.png" class="logo" width="120" height="80">
+								<br>
+								<h3><strong> Seja Um Aluno!</strong></h3>
+							</div>
+							<div th:replace="~{fragmentos/message :: message}"></div>
+
+							<form id="form-aluno" th:action="@{/create}" method="post" th:object="${aluno}">
+
+								<div class="form-group first">
+									<label for="nome">Seu Nome</label>
+									<input type="text" class="form-control" th:field="*{nome}" placeholder="seu nome"
+										id="nome" name="nome" th:errorClass="is-invalid">
+									<div style="display: block;" class="invalid-feedback" th:errors="*{nome}"></div>
+
+								</div>
+
+								<div class="form-group first">
+									<label for="email">Seu Melhor Email</label>
+									<input type="email" class="form-control" th:field="*{email}"
+										placeholder="@gmail.com" id="email" name="email" th:errorClass="is-invalid">
+									<div style="display: block;" class="invalid-feedback" th:errors="*{email}"></div>
+
+								</div>
+
+								<div class="form-group last mb-3">
+									<label for="senha">Crie Uma Senha</label>
+									<input type="password" class="form-control" th:field="*{senha}"
+										placeholder="********" id="senha" name="senha" th:errorClass="is-invalid">
+									<div style="display: block;" class="invalid-feedback" th:errors="*{senha}"></div>
+
+								</div>
+
+								<div class="content-btn">
+									<button type="submit" class="btn btn-info btn-lg btn-block">Enviar</button>
+
+								</div>
+
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.slim.js"></script>
+
+
+
+
+
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+
+</html>

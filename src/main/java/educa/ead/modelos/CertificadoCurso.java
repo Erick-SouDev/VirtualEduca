@@ -1,15 +1,14 @@
 package educa.ead.modelos;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,14 +34,19 @@ public class CertificadoCurso  implements Serializable{
 	@Temporal(TemporalType.DATE )
 
 	private Date dataFinal;
+	
+	
+	private Duration totalHorasCumpridaCurso;
 
 	@Embedded
 	private DadosAlunoCurso dadosAlunoCursoDto;
 	
+
 	
 	@ManyToOne(cascade = CascadeType.ALL , optional = false , fetch = FetchType.LAZY )
 	@JoinColumn(unique = true , name = "id_curso" )
 	private Curso curso;
+
 
 
 	public Long getId() {
@@ -50,9 +54,11 @@ public class CertificadoCurso  implements Serializable{
 	}
 
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 
 	public Date getDataInicio() {
@@ -60,9 +66,11 @@ public class CertificadoCurso  implements Serializable{
 	}
 
 
+
 	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
+
 
 
 	public Date getDataFinal() {
@@ -70,9 +78,23 @@ public class CertificadoCurso  implements Serializable{
 	}
 
 
+
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
 	}
+
+
+
+	public Duration getTotalHorasCumpridaCurso() {
+		return totalHorasCumpridaCurso;
+	}
+
+
+
+	public void setTotalHorasCumpridaCurso(Duration totalHorasCumpridaCurso) {
+		this.totalHorasCumpridaCurso = totalHorasCumpridaCurso;
+	}
+
 
 
 	public DadosAlunoCurso getDadosAlunoCursoDto() {
@@ -80,9 +102,11 @@ public class CertificadoCurso  implements Serializable{
 	}
 
 
+
 	public void setDadosAlunoCursoDto(DadosAlunoCurso dadosAlunoCursoDto) {
 		this.dadosAlunoCursoDto = dadosAlunoCursoDto;
 	}
+
 
 
 	public Curso getCurso() {
@@ -90,15 +114,18 @@ public class CertificadoCurso  implements Serializable{
 	}
 
 
+
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(curso, id);
 	}
+
 
 
 	@Override
@@ -110,15 +137,20 @@ public class CertificadoCurso  implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		CertificadoCurso other = (CertificadoCurso) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(curso, other.curso) && Objects.equals(id, other.id);
 	}
+
 
 
 	@Override
 	public String toString() {
 		return "CertificadoCurso [id=" + id + ", dataInicio=" + dataInicio + ", dataFinal=" + dataFinal
-				+ ", dadosAlunoCursoDto=" + dadosAlunoCursoDto + ", curso=" + curso + "]";
+				+ ", totalHorasCumpridaCurso=" + totalHorasCumpridaCurso + ", dadosAlunoCursoDto=" + dadosAlunoCursoDto
+				+ ", curso=" + curso + "]";
 	}
+
+
+	
     
 	
 	

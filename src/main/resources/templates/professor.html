@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{fragmentos/head :: head('Professor')}">
+</head>
+
+<body>
+
+	<header th:insert="~{fragmentos/header :: header}"></header>
+	<div class="half">
+		<div class="contents order-2 order-md-1">
+
+			<div class="container">
+
+				<div class="row align-items-center justify-content-center">
+					<div class="col-md-12">
+						<div class="form-block">
+
+							<div class="text-center mb-5">
+								<img th:src="@{../static/images/online.png}" class="logo" width="120" height="80">
+								<br>
+								<h3><strong> Seja Um Professor</strong></h3>
+							</div>
+							<form th:object="${professor}">
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="nome">Nome </label>
+										<input type="text" class="form-control" id="nome" placeholder="seu nome"
+											name="nome">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="formacao">Formação</label>
+										<input type="text" class="form-control" id="formacao"
+											placeholder="sua formação " name="formacao">
+									</div>
+								</div>
+
+									
+								<div class="form-row">
+                                       <div class="form-group col-md-12">
+										<label for="exampleFormControlSelect1">Qual e sua disciplina</label>
+										<select class="form-control" id="exampleFormControlSelect1" name="disciplina" >
+											<option value="" selected="selected">[--Selecione--]</option>
+											<option th:each="d : ${T(educa.ead.enumerator.disciplina.DisciplinaEnum).values()}" th:value="${d}" th:text="${d.name}"></option>
+											
+										</select>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="email">Email</label>
+										<input type="email" class="form-control" id="email" name="email"
+											placeholder="@gmail.com">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="senha">Crie sua senha</label>
+										<input type="password" class="form-control" id="senha" name="senha"
+											placeholder="********">
+									</div>
+
+									<div class="form-group col-md-12">
+										<label for="exampleFormControlTextarea1">Fale um pouco sobre você.!</label>
+										<textarea minlength="0" maxlength="800" name="sobreprofessor"
+											style="height: 60px;" class="form-control" id="exampleFormControlTextarea1"
+											placeholder="Escreva Aqui!" rows="10"></textarea>
+									</div>
+								</div>
+
+
+
+								<button id="bt-send" type="submit" class="btn btn-info  btn-lg btn-block">Enviar</button>
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+ 
+
+    
+
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+
+</html>

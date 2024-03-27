@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="pt-br">
+
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="~{fragmentos/head :: head('login')}">
 </head>
@@ -10,7 +12,10 @@
 	<div class="half">
 		<div class="contents order-2 order-md-1">
 
+
 			<div class="container">
+
+
 				<div class="row align-items-center justify-content-center">
 
 					<div class="col-md-6">
@@ -20,30 +25,26 @@
 								<br>
 								<h3>Bem vindo ao! <strong>VirtualEduca</strong></h3>
 							</div>
-							<form action="#" method="post">
+							<form th:action="@{/login}" method="post">
 								<div class="form-group first">
 									<label for="email">Email</label>
-									<input type="email" name="email" class="form-control" placeholder="email@gmail.com"
-										id="email">
+									<input type="email" name="email" class="form-control" placeholder="@gmail.com"
+										id="email" value="">
 								</div>
 								<div class="form-group last mb-3">
 									<label for="senha">Senha</label>
-									<input type="password" class="form-control" placeholder="********" id="senha">
+									<input type="password" class="form-control" placeholder="********" id="senha" value="">
 								</div>
 
 								<div class="content-btn">
-									<button style="background-color: #015917; border: none;" type="submit"
-										class="btn  btn-primary" id="btn-submit">Iniciar
-										Sessão
+									<button type="submit" class="btn btn-info">Iniciar Sessão </button>
+									<button type="button" class="btn btn-info" data-toggle="modal"
+										data-target="#exampleModal">
+										Recuperar Senha
 									</button>
-									<button style="background-color: #015917; border: none;" type="button"
-										class="btn  btn-primary" id="btn-submit">Recuperar Senha
-									</button>
+
 
 								</div>
-
-								<a style="text-align: center; text-decoration: none; color: blue; margin: 5px auto;"
-									class="link-page-registre" href="#">Cadastre-se</a>
 
 							</form>
 
@@ -58,10 +59,18 @@
 
 
 
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+
 </body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
 
 </html>

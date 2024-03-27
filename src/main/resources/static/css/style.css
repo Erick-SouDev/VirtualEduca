@@ -1,8 +1,9 @@
 body {
 	font-family: "Roboto", sans-serif;
 	background-color: #fff;
-	overflow: hidden;
 }
+
+
 
 p {
 	color: #b3b3b3;
@@ -222,27 +223,20 @@ h2 {
 	opacity: .2;
 }
 
-.content-btn{
+.content-btn {
 	display: flex;
-	
-	
-	
+
+
+
 }
-.content-btn button{
+
+.content-btn button {
 	margin-left: 5px;
 }
 
-.link-page-registre{
+
+.link-page-registre {
 	text-decoration: none;
 	color: blue;
 	margin: auto;
 }
-
-
-
-
-
-
-
-
-
